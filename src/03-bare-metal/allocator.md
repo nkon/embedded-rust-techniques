@@ -56,7 +56,7 @@ $ rustup target add thumbv7m-none-eabi
 ```rust,ignore
 {{#include ../../ci/03-bare-metal/allocator/src/main.rs:6:8}}
 {{#include ../../ci/03-bare-metal/allocator/src/main.rs:10:12}}
-{{#include ../../ci/03-bare-metal/allocator/src/main.rs:26:53}}
+{{#include ../../ci/03-bare-metal/allocator/src/main.rs:26:56}}
 ```
 
 順番に解説します。
@@ -76,7 +76,7 @@ $ rustup target add thumbv7m-none-eabi
 `GlobalAlloc`トレイトの実装で求められるメソッドは、`alloc`と`dealloc`のみです。`dealloc`はメモリを解放しないため、何もしません。
 
 ```rust,ignore
-{{#include ../../ci/03-bare-metal/allocator/src/main.rs:35:48}}
+{{#include ../../ci/03-bare-metal/allocator/src/main.rs:35:51}}
 ```
 
 引数`layout` ([`Layout`]) は、要求されているメモリブロックです。`align()`で、アライメントを考慮して、確保しなければならないメモリブロックサイズを返します。`head`のアドレスが`end`に到達するまで、単純にポインタを増加しながら、メモリを割り当てます。
@@ -90,7 +90,7 @@ $ rustup target add thumbv7m-none-eabi
 最後の要素が、アロケーションエラー発生時のハンドラです。これは、`#[alloc_error_handler]`アトリビュートを指定します。
 
 ```rust,ignore
-{{#include ../../ci/03-bare-metal/allocator/src/main.rs:64:67}}
+{{#include ../../ci/03-bare-metal/allocator/src/main.rs:67:70}}
 ```
 
 今回は、単純に無限ループに陥るだけの実装です。
